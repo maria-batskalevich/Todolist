@@ -6,8 +6,6 @@ import {Delete} from "@material-ui/icons";
 import {Button, Checkbox, IconButton} from "@material-ui/core";
 
 
-
-
 export type TaskType = {
     id: string
     title: string
@@ -67,7 +65,7 @@ export function Todolist(props: PropsType) {
 
 
             <IconButton onClick={removeTodolist}>
-                <Delete />
+                <Delete/>
             </IconButton>
 
         </h3>
@@ -88,7 +86,7 @@ export function Todolist(props: PropsType) {
                         <EditableSpan title={t.title} callBack={updateTaskHandler}/>
 
                         <IconButton onClick={onClickHandler}>
-                            <Delete />
+                            <Delete/>
                         </IconButton>
 
                     </div>

@@ -27,30 +27,6 @@ type PropsType = {
 }
 
 export function Todolist(props: PropsType) {
-    // let [title, setTitle] = useState("")
-    // let [error, setError] = useState<string | null>(null)
-    //
-    // const addTask = () => {
-    //     let newTitle = title.trim();
-    //     if (newTitle !== "") {
-    //         props.addTask(newTitle, props.id);
-    //         setTitle("");
-    //     } else {
-    //         setError("Title is required");
-    //     }
-    // }
-    //
-    // const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    //     setTitle(e.currentTarget.value)
-    // }
-    //
-    // const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-    //     setError(null);
-    //     if (e.charCode === 13) {
-    //         addTask();
-    //     }
-    // }
-
     const removeTodolist = () => props.removeTodolist(props.id)
     const addTaskHandler = (title: string) => props.addTask(title, props.id)
     const onAllClickHandler = () => props.changeFilter("all", props.id);

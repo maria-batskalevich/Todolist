@@ -23,7 +23,7 @@
     "typescript": "~3.7.2",
     "uuid": "^8.0.0"
   },
-  "homepage": "https://maria-batskalevich.github.io/Todolist/",
+  "homepage": "https://maria-batskalevich.github.io/todolist/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

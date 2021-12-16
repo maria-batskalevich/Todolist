@@ -1,8 +1,7 @@
-import React, {useState} from 'react';
-import {TasksStateType} from '../App';
+import React from 'react';
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "./tasks-reducer";
-import {start} from "repl";
 import {addTodolistAC, removeTodolistAC} from "./todolists-reducer";
+import {TasksStateType} from "../AppWithRedux";
 
 let startState: TasksStateType = {};
 beforeEach(() => {
@@ -38,7 +37,7 @@ test('task should change status', () => {
     expect(endState['todolistId2'][0].isDone).toBe(true)
 })
 
-test('task should change its title', ()=> {
+test('task should change its title', () => {
     const endState = tasksReducer(startState, changeTaskTitleAC('todolistId2', '1', 'chicken'))
     expect(endState['todolistId2'][0].title).toBe('chicken')
 })

@@ -38,8 +38,8 @@ test('task should change status', () => {
 })
 
 test('task should change its title', () => {
-    const endState = tasksReducer(startState, changeTaskTitleAC('todolistId2', '1', 'chicken'))
-    expect(endState['todolistId2'][0].title).toBe('chicken')
+    const endState = tasksReducer(startState, changeTaskTitleAC('todolistId2', '3', 'chicken'))
+    expect(endState['todolistId2'][2].title).toBe('chicken')
 })
 
 test('new array should be added when new todolist is added', () => {

@@ -17,10 +17,10 @@ export const taskApi = {
         return instance.post<{ title: string }, AxiosResponse<ResponseType<{ item: TaskType }>>>(`/todo-lists/${todolistId}/tasks`, {title})
     },
     deleteTask(todolistId: string, taskId: string) {
-        return instance.delete<ResponseType>(`/todo-lists/${todolistId}/tasks/${taskId}`)
+        return instance.delete(`/todo-lists/${todolistId}/tasks/${taskId}`)
     },
-    updateTask(todolistId: string, taskId: string, title: string, model: UpdateTaskType) {
-        return instance.put<UpdateTaskType, AxiosResponse<ResponseType<{ item: TaskType }>>>(`/todo-lists/${todolistId}/tasks/${taskId}`, {title})
+    updateTask(todolistId: string, taskId: string, title: string) {
+        return instance.put(`/todo-lists/${todolistId}/tasks/${taskId}`, {title})
     }
 }
 
@@ -29,9 +29,9 @@ type TaskType = {
     description: string
     id: string
     order: number
-    priority: number
+    priority: TaskPriorities
     startDate: string
-    status: number
+    status: TaskStatuses
     title: string
     todoListId: string
 }

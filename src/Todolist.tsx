@@ -9,13 +9,14 @@ import {TaskStatuses, TaskType} from "./api/todolist-api";
 import {FilterValuesType} from "./state/todolists-reducer";
 
 
+
 type PropsType = {
     id: string
     title: string
     tasks: Array<TaskType>
-    changeFilter: (value: FilterValuesType, todolistId: string) => void
+    changeFilter: (todolistId: string, value: FilterValuesType ) => void
     addTask: (title: string, todolistId: string) => void
-    changeTaskStatus: (id: string, status: TaskStatuses, todolistId: string) => void
+    changeTaskStatus: (todolistId: string, id: string, status: TaskStatuses) => void
     changeTaskTitle: (taskId: string, newTitle: string, todolistId: string) => void
     removeTask: (taskId: string, todolistId: string) => void
     removeTodolist: (id: string) => void
@@ -38,9 +39,9 @@ export const Todolist = React.memo(function (props: PropsType) {
         props.changeTodolistTitle(props.id, title)
     }, [props.id, props.changeTodolistTitle])
 
-    const onAllClickHandler = useCallback(() => props.changeFilter('all', props.id), [props.id, props.changeFilter])
-    const onActiveClickHandler = useCallback(() => props.changeFilter('active', props.id), [props.id, props.changeFilter])
-    const onCompletedClickHandler = useCallback(() => props.changeFilter('completed', props.id), [props.id, props.changeFilter])
+    const onAllClickHandler = useCallback(() => props.changeFilter(props.id, 'all', ), [props.id, props.changeFilter])
+    const onActiveClickHandler = useCallback(() => props.changeFilter(props.id, 'active'), [props.id, props.changeFilter])
+    const onCompletedClickHandler = useCallback(() => props.changeFilter(props.id, 'completed'), [props.id, props.changeFilter])
 
 
     let tasksForTodolist = props.tasks

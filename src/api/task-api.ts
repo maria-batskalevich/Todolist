@@ -63,11 +63,11 @@ export enum TaskPriorities {
     Later = 4
 }
 
-type UpdateTaskType = {
-    title: string
-    description: string
-    status: TaskStatuses
-    priority: TaskPriorities
-    startDate: string
-    deadline: string
-}
+// type UpdateTaskType = {
+//     title: string
+//     description: string
+//     status: TaskStatuses
+//     priority: TaskPriorities
+//     startDate: string
+//     deadline: string
+// }

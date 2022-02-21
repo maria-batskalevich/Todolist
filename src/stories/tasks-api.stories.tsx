@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {taskApi} from "../api/task-api";
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
     title: 'API'
 }
@@ -11,7 +12,7 @@ export const GetTasks = () => {
    const getTasks = () => {
        taskApi.getTask(todolistId)
            .then((res) => {
-               setState(res.data)
+               setState(res.data.items)
            })
    }
     return <div> {JSON.stringify(state)}
@@ -20,7 +21,7 @@ export const GetTasks = () => {
                    onChange={(e) => {
                        setTodolistId(e.currentTarget.value)
                    }}/>
-            <button onClick={getTasks}>getTasks</button>
+            <button onClick={getTasks}>get Tasks</button>
         </div>
     </div>
 }

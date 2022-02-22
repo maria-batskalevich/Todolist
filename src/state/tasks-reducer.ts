@@ -1,7 +1,9 @@
 import {v1} from 'uuid';
-import {AddTodolistActionType, RemoveTodolistActionType} from './todolists-reducer';
+import {AddTodolistActionType, RemoveTodolistActionType, SetTodosActionType} from './todolists-reducer';
 import {TasksStateType} from '../App';
 import {TaskPriorities, TaskStatuses, TaskType} from "../api/todolist-api";
+import {Dispatch} from "redux";
+import {taskApi} from "../api/task-api";
 
 export type RemoveTaskActionType = {
     type: 'REMOVE-TASK',
@@ -34,6 +36,7 @@ type ActionsType = RemoveTaskActionType | AddTaskActionType
     | ChangeTaskTitleActionType
     | AddTodolistActionType
     | RemoveTodolistActionType
+    | SetTodosActionType
 
 const initialState: TasksStateType = {}
 
@@ -93,6 +96,13 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Actio
             delete copyState[action.id];
             return copyState;
         }
+        case 'SET-TODOS' :
+            // debugger
+            const copyState = {...state}
+            action.todolists.forEach((tl) => {
+                copyState[tl.id] = []
+            })
+            return copyState
         default:
             return state;
     }
@@ -104,9 +114,19 @@ export const removeTaskAC = (taskId: string, todolistId: string): RemoveTaskActi
 export const addTaskAC = (title: string, todolistId: string): AddTaskActionType => {
     return {type: 'ADD-TASK', title, todolistId}
 }
-export const changeTaskStatusAC = (todolistId: string, taskId: string, status: TaskStatuses, ): ChangeTaskStatusActionType => {
+export const changeTaskStatusAC = (todolistId: string, taskId: string, status: TaskStatuses,): ChangeTaskStatusActionType => {
     return {type: 'CHANGE-TASK-STATUS', status, todolistId, taskId}
 }
 export const changeTaskTitleAC = (taskId: string, title: string, todolistId: string): ChangeTaskTitleActionType => {
     return {type: 'CHANGE-TASK-TITLE', title, todolistId, taskId}
+}
+
+//Thunk
+
+export const setTasksThunk = (dispatch: Dispatch) => {
+    const todoId = ''
+    taskApi.getTask(todoId)
+        .then((res) => {
+            
+        })
 }

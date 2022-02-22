@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import './App.css';
 import {Todolist} from './Todolist';
 import {AddItemForm} from './AddItemForm';
@@ -6,7 +6,7 @@ import {
     addTodolistAC,
     changeTodolistFilterAC,
     changeTodolistTitleAC,
-    removeTodolistAC,
+    removeTodolistAC, setTodosThunk,
 } from "./state/todolists-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./state/tasks-reducer";
@@ -34,11 +34,16 @@ export type TasksStateType = {
 }
 
 function AppWithRedux() {
-    console.log('App is called')
+
+    useEffect(() => {
+        // debugger
+        dispatch(setTodosThunk)
+    }, [])
+
     const dispatch = useDispatch()
     const todolists = useSelector<AppRootStateType, Array<TodolistType>>(state => state.todolists)
     const tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
-
+    // debugger
     const removeTask = useCallback((todolistId: string, id: string) => {
         dispatch(removeTaskAC(todolistId, id))
     }, [dispatch])
@@ -93,8 +98,9 @@ function AppWithRedux() {
                 </Grid>
                 <Grid container spacing={3}>
                     {
-                        todolists.map(tl => {
-                            let tasksForTodolist = tasks[tl.id];;
+                        todolists?.map(tl => {
+
+                            let tasksForTodolist = tasks[tl.id];
 
                             return <Grid item key={tl.id}>
                                 <Paper style={{padding: "10px"}}>

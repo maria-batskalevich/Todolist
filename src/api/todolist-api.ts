@@ -61,6 +61,7 @@ export enum TaskPriorities {
 
 export const todolistAPI = {
     getTodolist() {
+        // debugger
         return instance.get<Array<TodolistType>>('todo-lists')
     },
     createTodolist(title: string) {

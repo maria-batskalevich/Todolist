@@ -8,13 +8,11 @@ import {Task} from './Task'
 import {TaskStatuses, TaskType} from "./api/todolist-api";
 import {FilterValuesType} from "./state/todolists-reducer";
 
-
-
 type PropsType = {
     id: string
     title: string
     tasks: Array<TaskType>
-    changeFilter: (todolistId: string, value: FilterValuesType ) => void
+    changeFilter: (todolistId: string, value: FilterValuesType) => void
     addTask: (title: string, todolistId: string) => void
     changeTaskStatus: (todolistId: string, id: string, status: TaskStatuses) => void
     changeTaskTitle: (taskId: string, newTitle: string, todolistId: string) => void
@@ -39,7 +37,7 @@ export const Todolist = React.memo(function (props: PropsType) {
         props.changeTodolistTitle(props.id, title)
     }, [props.id, props.changeTodolistTitle])
 
-    const onAllClickHandler = useCallback(() => props.changeFilter(props.id, 'all', ), [props.id, props.changeFilter])
+    const onAllClickHandler = useCallback(() => props.changeFilter(props.id, 'all',), [props.id, props.changeFilter])
     const onActiveClickHandler = useCallback(() => props.changeFilter(props.id, 'active'), [props.id, props.changeFilter])
     const onCompletedClickHandler = useCallback(() => props.changeFilter(props.id, 'completed'), [props.id, props.changeFilter])
 
@@ -62,7 +60,7 @@ export const Todolist = React.memo(function (props: PropsType) {
         <AddItemForm addItem={addTask}/>
         <div>
             {
-                tasksForTodolist.map(t => <Task key={t.id} task={t} todolistId={props.id}
+                tasksForTodolist?.map(t => <Task key={t.id} task={t} todolistId={props.id}
                                                 removeTask={props.removeTask}
                                                 changeTaskTitle={props.changeTaskTitle}
                                                 changeTaskStatus={props.changeTaskStatus}

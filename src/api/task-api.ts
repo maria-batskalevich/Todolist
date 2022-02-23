@@ -19,21 +19,22 @@ export const taskApi = {
     deleteTask(todolistId: string, taskId: string) {
         return instance.delete(`/todo-lists/${todolistId}/tasks/${taskId}`)
     },
-    updateTask(todolistId: string, taskId: string, title: string) {
-        return instance.put(`/todo-lists/${todolistId}/tasks/${taskId}`, {title})
+    updateTask(todolistId: string, taskId: string, model: UpdateTaskModelType) {
+        return instance.put<UpdateTaskModelType, AxiosResponse<ResponseType<{ item: TaskType }>>>(`todo-lists/${todolistId}/tasks/${taskId}`, model);
     }
 }
 
-type TaskType = {
-    addedDate: string
+export type TaskType = {
     description: string
-    id: string
-    order: number
+    title: string
+    status: TaskStatuses
     priority: TaskPriorities
     startDate: string
-    status: TaskStatuses
-    title: string
+    deadline: string
+    id: string
     todoListId: string
+    order: number
+    addedDate: string
 }
 
 type GetTaskType = {
@@ -63,11 +64,11 @@ export enum TaskPriorities {
     Later = 4
 }
 
-// type UpdateTaskType = {
-//     title: string
-//     description: string
-//     status: TaskStatuses
-//     priority: TaskPriorities
-//     startDate: string
-//     deadline: string
-// }
+type UpdateTaskModelType = {
+    title: string
+    description: string
+    status: TaskStatuses
+    priority: TaskPriorities
+    startDate: string
+    deadline: string
+}

@@ -22,19 +22,6 @@ export type ResponseType<D = {}> = {
     data: D
 }
 
-export type TaskType = {
-    description: string
-    title: string
-    status: TaskStatuses
-    priority: TaskPriorities
-    startDate: string
-    deadline: string
-    id: string
-    todolistId: string
-    order: number
-    addedDate: string
-}
-
 export type UpdateTaskModelType = {
     title: string
     description: string

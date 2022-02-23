@@ -96,7 +96,7 @@ export const setTodosAC = (todolists: TodolistType[]) => {
 export type SetTodosActionType = ReturnType<typeof setTodosAC>
 
 //THUNK
-export const setTodosThunk = (dispatch: Dispatch): void => {
+export const setTodosTC = () => (dispatch: Dispatch): void => {
     // debugger
 //1. side effect
     todolistAPI.getTodolist()

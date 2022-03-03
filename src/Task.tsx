@@ -11,7 +11,7 @@ type TaskPropsType = {
     task: TaskType
     todolistId: string
     changeTaskStatus: (todolistId: string, id: string, status: TaskStatuses, ) => void
-    changeTaskTitle: (taskId: string, newTitle: string, todolistId: string) => void
+    changeTaskTitle: (todolistId: string, taskId: string, newTitle: string) => void
     removeTask: (todolistId: string, taskId: string) => void
 }
 export const Task = React.memo((props: TaskPropsType) => {
@@ -20,11 +20,11 @@ export const Task = React.memo((props: TaskPropsType) => {
     const onChangeHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         let newIsDoneValue = e.currentTarget.checked
         props.changeTaskStatus(props.todolistId, props.task.id, newIsDoneValue ? TaskStatuses.Completed: TaskStatuses.New)
-    }, [props.task.id, props.todolistId]);
+    }, [props.todolistId, props.task.id]);
 
     const onTitleChangeHandler = useCallback((newValue: string) => {
-        props.changeTaskTitle(props.task.id, newValue, props.todolistId)
-    }, [props.task.id, props.todolistId]);
+        props.changeTaskTitle(props.todolistId, props.task.id, newValue)
+    }, [props.todolistId, props.task.id]);
 
     return <div key={props.task.id} className={props.task.status === TaskStatuses.Completed ? 'is-done' : ''}>
         <Checkbox

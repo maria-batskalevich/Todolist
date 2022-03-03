@@ -24,6 +24,7 @@ export const taskApi = {
     }
 }
 
+//types
 export type TaskType = {
     description: string
     title: string

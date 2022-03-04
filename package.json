@@ -1,7 +1,8 @@
 {
-  "name": "todo13v2",
+  "name": "todolist",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://maria-batskalevich.github.io/it-inc-todolist/",
   "dependencies": {
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
@@ -60,6 +61,7 @@
     "@storybook/addon-links": "^6.1.15",
     "@storybook/node-logger": "^6.1.15",
     "@storybook/preset-create-react-app": "^3.1.5",
-    "@storybook/react": "^6.4.19"
+    "@storybook/react": "^6.4.19",
+    "gh-pages": "2.0"
   }
 }

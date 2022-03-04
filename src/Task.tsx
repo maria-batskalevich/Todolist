@@ -10,7 +10,7 @@ import {TaskType} from "./api/task-api";
 type TaskPropsType = {
     task: TaskType
     todolistId: string
-    changeTaskStatus: (todolistId: string, id: string, status: TaskStatuses, ) => void
+    changeTaskStatus: (todolistId: string, id: string, status: TaskStatuses,) => void
     changeTaskTitle: (todolistId: string, taskId: string, newTitle: string) => void
     removeTask: (todolistId: string, taskId: string) => void
 }
@@ -19,7 +19,7 @@ export const Task = React.memo((props: TaskPropsType) => {
 
     const onChangeHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         let newIsDoneValue = e.currentTarget.checked
-        props.changeTaskStatus(props.todolistId, props.task.id, newIsDoneValue ? TaskStatuses.Completed: TaskStatuses.New)
+        props.changeTaskStatus(props.todolistId, props.task.id, newIsDoneValue ? TaskStatuses.Completed : TaskStatuses.New)
     }, [props.todolistId, props.task.id]);
 
     const onTitleChangeHandler = useCallback((newValue: string) => {

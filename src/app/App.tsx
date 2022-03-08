@@ -38,6 +38,7 @@ function App() {
             </AppBar>
             {status === 'loading' && <LinearProgress/>}
             <Container fixed>
+
                 <TodolistsList/>
             </Container>
         </div>

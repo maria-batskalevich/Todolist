@@ -42,7 +42,6 @@ function App({demo = false}: PropsType) {
         dispatch(logoutTC())
     }
 
-
     return (
         <div className="App">
             <ErrorSnackbar/>

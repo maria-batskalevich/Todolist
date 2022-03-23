@@ -12,25 +12,21 @@ import Container from '@mui/material/Container';
 import LinearProgress from '@mui/material/LinearProgress';
 import {Menu} from '@mui/icons-material';
 import {ErrorSnackbar} from '../components/ErrorSnackbar/ErrorSnackbar'
-import {Navigate, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import {Login} from "../features/Login/Login";
 import {initializeAppTC, RequestStatusType} from "./app-reducer";
 import {CircularProgress} from "@mui/material";
 import {logoutTC} from "../features/Login/authReducer";
 
 
-type PropsType = {
-    demo?: boolean
-}
-
-function App({demo = false}: PropsType) {
+function App() {
     const status = useSelector<AppRootStateType, RequestStatusType>((state) => state.app.status)
     const isInitialized = useSelector<AppRootStateType, boolean>((state) => state.app.isInitialized)
     const dispatch = useDispatch()
     const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
     useEffect(() => {
         dispatch(initializeAppTC())
-    }, [])
+    }, [dispatch])
 
     if (!isInitialized) {
         return <div
@@ -59,10 +55,9 @@ function App({demo = false}: PropsType) {
             </AppBar>
             <Container fixed>
                 <Routes>
-                    <Route path={"/"} element={<TodolistsList demo={demo}/>}/>
+                    <Route path={"/it-inc-todolist/"} element={<TodolistsList />}/>
                     <Route path={"login"} element={<Login/>}/>
-                    <Route path={"/404"} element={<h1 style={{textAlign: 'center'}}>404. Page not found</h1>}/>
-                    <Route path={"*"} element={<Navigate to={'/404'}/>}/>
+                    <Route path={"*"} element={<h1 style={{textAlign: 'center'}}>404. Page not found</h1>}/>
                 </Routes>
 
             </Container>

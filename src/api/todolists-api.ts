@@ -38,14 +38,15 @@ export const todolistsAPI = {
 
 export const authAPI = {
     login(data:LoginParamsType) {
-        return instance.post<LoginParamsType, AxiosResponse<ResponseType<{ userId: number }>>>(`auth/login`, data)
+        return instance.post<ResponseType<{userId?: number}>>(`auth/login`, data)
+        // return instance.post<LoginParamsType, AxiosResponse<ResponseType<{ userId: number }>>>(`auth/login`, data)
+    },
+    logout() {
+        return instance.delete<ResponseType<{userId?: number}>>(`auth/login`)
     },
     me() {
         return instance.get<ResponseType<meResponseType>>('auth/me')
     },
-    logout() {
-        return instance.delete<ResponseType>(`auth/login`)
-    }
 }
 
 // types
@@ -113,5 +114,6 @@ export type LoginParamsType = {
 type meResponseType = {
     id: number
     email: string
-    password: string
+    login: string
+    // password: string
 }

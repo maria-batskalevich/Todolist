@@ -55,8 +55,8 @@ function App() {
             </AppBar>
             <Container fixed>
                 <Routes>
-                    <Route path={"/it-inc-todolist/"} element={<TodolistsList />}/>
-                    {/*<Route path={"login"} element={<Login/>}/>*/}
+                    <Route path={"it-inc-todolist/"} element={<TodolistsList />}/>
+                    <Route path={"login"} element={<Login/>}/>
                     <Route path={"*"} element={<h1 style={{textAlign: 'center'}}>404. Page not found</h1>}/>
                 </Routes>
 

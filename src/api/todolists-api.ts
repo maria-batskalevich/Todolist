@@ -1,10 +1,12 @@
 import axios, {AxiosResponse} from 'axios'
 
+
 const instance = axios.create({
-    baseURL: 'https://social-network.samuraijs.com/api/1.1/',
+    baseURL: process.env.REACT_APP_BASE_URL,
     withCredentials: true,
     headers: {
-        'API-KEY': 'c8be0b36-3ac5-42a7-89ea-e79ef5d95007'
+        // @ts-ignore
+        'API-KEY': process.env.REACT_APP_API_KEY
     }
 })
 
@@ -105,15 +107,15 @@ type GetTasksResponse = {
     items: TaskType[]
 }
 export type LoginParamsType = {
-    email: string
-    password: string
+    email: string | undefined
+    password: string | undefined
     rememberMe?: boolean
     captcha?: string
 }
 
 type meResponseType = {
     id: number
-    email: string
-    login: string
+    email: string | undefined
+    login: string | undefined
     // password: string
 }

@@ -4,7 +4,6 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
-import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import {useFormik} from "formik";
@@ -19,9 +18,9 @@ export const Login = () => {
     const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
     const formik = useFormik({
         initialValues: {
-            email: '',
-            password: '',
-            rememberMe: false
+            email: process.env.REACT_APP_EMAIL,
+            password: process.env.REACT_APP_PASSWORD,
+            rememberMe: true
         },
         validate: (values) => {
             const errors: Partial<Pick<LoginParamsType, 'password' | 'email' | 'rememberMe'>> = {};
@@ -50,17 +49,7 @@ export const Login = () => {
         <Grid item justifyContent={'center'}>
             <form onSubmit={formik.handleSubmit}>
                 <FormControl>
-                    <FormLabel>
-                        <p>To log in get registered
-                            <a href={'https://social-network.samuraijs.com/'}
-                               target={'_blank'}> here
-                            </a>
-                        </p>
-                        <p>or use common test account credentials:</p>
-                        <p>Email: maria.batskalevich@gmail.com</p>
-                        <p>Password: 1230</p>
-                    </FormLabel>
-                    <FormGroup>
+                    <FormGroup className={'loginForm'}>
                         <TextField label="Email"
                                    margin="normal"
                                    {...formik.getFieldProps('email')}

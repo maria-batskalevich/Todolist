@@ -1,6 +1,7 @@
 import {setIsLoggedInAC} from "../features/Login/authReducer";
 import {authAPI} from "../api/todolists-api";
 import {Dispatch} from "redux";
+import {handleServerAppError, handleServerNetworkError} from "../utils/error-utils";
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 
@@ -32,13 +33,17 @@ export const setAppErrorAC = (error: string | null) => ({type: "'APP/SET-ERROR'"
 export const setIsInitializedAC = (isInitialized: boolean) => ({type: 'APP/SET-ISINITIALIZED', isInitialized} as const)
 
 export const initializeAppTC = () => (dispatch: Dispatch) => {
-    authAPI.me().then(res => {
-        if (res.data.resultCode === 0) {
-            dispatch(setIsLoggedInAC(true));
-        } else {
-        }
-
-    })
+    authAPI.me()
+        .then(res => {
+            if (res.data.resultCode === 0) {
+                dispatch(setIsLoggedInAC(true));
+            } else {
+                handleServerAppError(res.data, dispatch)
+            }
+        })
+        .catch((error) => {
+            handleServerNetworkError(error, dispatch)
+        })
         .finally(() => {
             dispatch(setIsInitializedAC(true))
         })

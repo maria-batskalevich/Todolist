@@ -16,14 +16,15 @@ import {Route, Routes} from "react-router-dom";
 import {Login} from "../features/Login/Login";
 import {initializeAppTC, RequestStatusType} from "./app-reducer";
 import {CircularProgress} from "@mui/material";
-import {logoutTC} from "../features/Login/authReducer";
-
+import {logoutTC} from "../features/Login/auth-reducer";
+import {NotFound} from "../features/NotFound";
 
 function App() {
     const status = useSelector<AppRootStateType, RequestStatusType>((state) => state.app.status)
     const isInitialized = useSelector<AppRootStateType, boolean>((state) => state.app.isInitialized)
     const dispatch = useDispatch()
     const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
+
     useEffect(() => {
         dispatch(initializeAppTC())
     }, [dispatch])
@@ -57,14 +58,13 @@ function App() {
                 <Routes>
                     <Route path={"it-inc-todolist"} element={<TodolistsList/>}/>
                     <Route path={"login"} element={<Login/>}/>
-                    <Route path={"*"} element={<h1 style={{textAlign: 'center'}}>404. Page not found</h1>}/>
+                    <Route path={"*"} element={<NotFound/>}/>
                 </Routes>
 
             </Container>
         </div>
     )
 }
-
 export default App
 
 

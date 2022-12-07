@@ -1,7 +1,7 @@
-import {setIsLoggedInAC} from "../features/Login/authReducer";
 import {authAPI} from "../api/todolists-api";
 import {Dispatch} from "redux";
 import {handleServerAppError, handleServerNetworkError} from "../utils/error-utils";
+import {setIsLoggedInAC} from "../features/Login/auth-reducer";
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 

@@ -11,7 +11,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {Navigate} from "react-router-dom";
 import {AppRootStateType} from "../../app/store";
 import {LoginParamsType} from "../../api/todolists-api";
-import {loginTC} from "./authReducer";
+import {loginTC} from "./auth-reducer";
+import s from './login.module.css'
 
 export const Login = () => {
     const dispatch = useDispatch()
@@ -50,6 +51,10 @@ export const Login = () => {
             <form onSubmit={formik.handleSubmit}>
                 <FormControl>
                     <FormGroup className={'loginForm'}>
+                        <h2>Sing in</h2>
+                        <div className={s.span}>
+                            <span>Email: free@samuraijs.com <br/> Password: free</span>
+                        </div>
                         <TextField label="Email"
                                    margin="normal"
                                    {...formik.getFieldProps('email')}

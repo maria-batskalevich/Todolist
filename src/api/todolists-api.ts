@@ -117,5 +117,4 @@ type meResponseType = {
     id: number
     email: string | undefined
     login: string | undefined
-    // password: string
 }
